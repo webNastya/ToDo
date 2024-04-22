@@ -1,0 +1,15 @@
+.TaskInput {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.Button {
+    padding: 4px 8px;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    margin-left: 10px;
+    color: var(--bars-color);
+    background-color: var(--bars-bg-color);
+}
