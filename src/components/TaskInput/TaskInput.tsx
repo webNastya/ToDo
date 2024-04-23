@@ -6,7 +6,7 @@ export const TaskInput = () => {
     return (
         <div className={cls.TaskInput}>
             <Input placeholder="Введите текст" />
-            <Button className={cls.Button}>Click</Button>
+            <Button className={cls.Button}>Добавить</Button>
         </div>
     )
 }
