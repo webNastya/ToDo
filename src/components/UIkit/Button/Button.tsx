@@ -16,12 +16,15 @@ export const Button:FC<ButtonProops> = (props) => {
         className, 
         children,
         theme,
+        onClick,
         ...otherProops
     } = props
 
     return (
-       <button className={classNames(cls.Button, {[cls.clear]: theme === ThemeButton.CLEAR }, className)}
-        {...otherProops}
+       <button 
+            className={classNames(cls.Button, {[cls.clear]: theme === ThemeButton.CLEAR }, className)}
+            {...otherProops}
+            onClick={onClick}
        >
             {children}
        </button>

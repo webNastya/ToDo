@@ -7,13 +7,14 @@ interface CheckBoxProops extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const CheckBox:FC<CheckBoxProops> = (props) => {
-    const { className, type, onChange } = props
+    const { className, type, onChange, defaultChecked } = props
 
     return (
         <input 
             type={type}
             onChange={onChange}
-            className={classNames(cls.CheckBox, className)} 
+            className={classNames(cls.CheckBox, className)}
+            defaultChecked
         />
     )
 }
