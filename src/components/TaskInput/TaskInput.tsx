@@ -6,15 +6,16 @@ import { ChangeEvent, KeyboardEvent, useCallback, useContext, useState } from "r
 
 export const TaskInput = () => {
     const { tasks, setTasks } = useContext(TasksContext)
-    const [task, setTask] = useState("")
+    const [taskText, setTaskText] = useState("")
 
     const handlerTaskAdd = () => {
-        console.log(task);
-        setTasks([{id:1, text: task, isComplete: false}])
+        const maxId = tasks.length ? Math.max(...tasks.map(task => task.id)) + 1 : 0
+        setTasks([{id:maxId, text:taskText, isComplete:false}, ...tasks])
+        setTaskText("")
     }
 
     const handlerTaskInput = (e:ChangeEvent<HTMLInputElement>) => {
-        setTask(e.target.value)
+        setTaskText(e.target.value)
     }
 
     const handlerInputKeyDown = (e:KeyboardEvent<HTMLInputElement>) => {
@@ -25,6 +26,7 @@ export const TaskInput = () => {
     return (
         <div className={cls.TaskInput}>
             <Input 
+                value={taskText}
                 placeholder="Введите текст" 
                 onChange={handlerTaskInput}
                 onKeyDown={handlerInputKeyDown}

@@ -14,7 +14,7 @@ export const CheckBox:FC<CheckBoxProops> = (props) => {
             type={type}
             onChange={onChange}
             className={classNames(cls.CheckBox, className)}
-            defaultChecked
+            defaultChecked={defaultChecked}
         />
     )
 }

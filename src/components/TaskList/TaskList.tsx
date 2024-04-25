@@ -8,7 +8,7 @@ export const TaskList = () => {
     
     return (
         <div className={cls.TaskList}>
-            { tasks.map(task => <Task task={task} />) }
+            { tasks.map(task => <Task key={task.id} task={task} />) }
         </div>
     )
 }

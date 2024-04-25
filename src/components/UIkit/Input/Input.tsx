@@ -7,10 +7,11 @@ interface InputProops extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input:FC<InputProops> = (props) => {
-    const { className, placeholder, onChange, onKeyDown } = props
+    const { className, placeholder, onChange, onKeyDown, value } = props
 
     return (
         <input 
+            value={value}
             onKeyDown={onKeyDown}
             onChange={onChange} 
             placeholder={placeholder} 

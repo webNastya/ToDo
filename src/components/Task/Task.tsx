@@ -1,10 +1,11 @@
 import cls from "./Task.module.scss"
 import Delete from "../../assets/delete.svg"
 import { CheckBox } from "components/UIkit/CheckBox"
-import { ChangeEvent, FC, useState } from "react"
+import { ChangeEvent, FC, useContext, useState } from "react"
 import { Button, ThemeButton } from "components/UIkit/Button"
 import classNames from "classnames"
 import { TaskType } from "./type"
+import { TasksContext } from "components/TaskProvider/TasksContext"
 
 interface TaskProps {
     task: TaskType
@@ -12,12 +13,17 @@ interface TaskProps {
 
 export const Task:FC<TaskProps> = (props) => {
     const { task } = props
-    const [completed, setCompleted] = useState(task.isComplete)
-    const [mouseOver, setMouseOver] = useState(false)
+    const [ mouseOver, setMouseOver ] = useState(false)
+    const { tasks, setTasks } = useContext(TasksContext)
+    
     
     const handlerCheckBoxChange = ({target}:ChangeEvent) => {
         const checkbox = target as HTMLInputElement;
-        setCompleted(checkbox.checked)
+        setTasks(tasks.map(t => t.id !== task.id ? t : {...t, isComplete: !t.isComplete}))
+    }
+
+    const handlerDelete = () => {
+        
     }
 
     const handlerMouseOver = () => {
@@ -36,7 +42,7 @@ export const Task:FC<TaskProps> = (props) => {
             <div className={cls.firstWrap}>
                 <CheckBox
                     type="checkbox"
-                    defaultChecked={completed}
+                    defaultChecked={task.isComplete}
                     onChange={handlerCheckBoxChange}
                 />
                 <div className={cls.TaskText}>{task.text}</div>
@@ -45,7 +51,7 @@ export const Task:FC<TaskProps> = (props) => {
             <Button theme={ThemeButton.CLEAR} 
                 className={classNames(cls.Delete, {[cls.hidden]: !mouseOver})}
             >
-                <Delete />
+                <Delete onClick={handlerDelete}/>
             </Button>
         </div>
         
