@@ -5,7 +5,7 @@ import { ChangeEvent, FC, useContext, useState } from "react"
 import { Button, ThemeButton } from "components/UIkit/Button"
 import classNames from "classnames"
 import { TaskType } from "./type"
-import { TasksContext } from "components/TaskProvider/TasksContext"
+import { LOCAL_STORAGE_TASKS_KEY, TasksContext } from "components/TaskProvider/TasksContext"
 
 interface TaskProps {
     task: TaskType
@@ -19,11 +19,15 @@ export const Task:FC<TaskProps> = (props) => {
     
     const handlerCheckBoxChange = ({target}:ChangeEvent) => {
         const checkbox = target as HTMLInputElement;
-        setTasks(tasks.map(t => t.id !== task.id ? t : {...t, isComplete: !t.isComplete}))
+        const newChange = tasks.map(t => t.id !== task.id ? t : {...t, isComplete: !t.isComplete})
+        setTasks(newChange)
+        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newChange))
     }
 
     const handlerDelete = () => {
-        
+        const newTasks = tasks.filter(t => t.id !== task.id)
+        setTasks(newTasks)
+        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newTasks))
     }
 
     const handlerMouseOver = () => {

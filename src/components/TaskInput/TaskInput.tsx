@@ -1,8 +1,9 @@
-import { TasksContext } from "components/TaskProvider/TasksContext"
+import { LOCAL_STORAGE_TASKS_KEY, TasksContext } from "components/TaskProvider/TasksContext"
 import cls from "./TaskInput.module.scss"
 import { Button } from "components/UIkit/Button"
 import { Input } from "components/UIkit/Input"
-import { ChangeEvent, KeyboardEvent, useCallback, useContext, useState } from "react"
+import { ChangeEvent, KeyboardEvent, useContext, useState } from "react"
+ 
 
 export const TaskInput = () => {
     const { tasks, setTasks } = useContext(TasksContext)
@@ -10,7 +11,9 @@ export const TaskInput = () => {
 
     const handlerTaskAdd = () => {
         const maxId = tasks.length ? Math.max(...tasks.map(task => task.id)) + 1 : 0
-        setTasks([{id:maxId, text:taskText, isComplete:false}, ...tasks])
+        const newTasks = [{id:maxId, text:taskText, isComplete:false}, ...tasks]
+        setTasks(newTasks)
+        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newTasks))
         setTaskText("")
     }
 
