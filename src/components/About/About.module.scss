@@ -1,0 +1,18 @@
+.title{
+    padding: 20px 0 10px 0;
+    color: var(--bars-bg-color);
+    font-size: 20px;
+}
+.ul{
+    padding-left: 16px;
+}
+.ul li::marker {
+    color: var(--bars-bg-color);
+    font-size: 1.5em;
+}
+
+.a{
+    padding: 28px 0;
+    text-decoration: none;
+    color: var(--bars-bg-color);
+}

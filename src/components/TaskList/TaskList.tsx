@@ -1,10 +1,10 @@
-import { Task, TaskType } from "components/Task"
+import { Task } from "components/Task"
 import cls from "./TaskList.module.scss"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { TasksContext } from "components/TaskProvider/TasksContext"
 
 export const TaskList = () => {
-    const { tasks, setTasks } = useContext(TasksContext)
+    const { tasks } = useContext(TasksContext)
     
     return (
         <div className={cls.TaskList}>

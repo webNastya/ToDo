@@ -1,5 +1,7 @@
+import { About } from "components/About"
+
 export const AboutPage = () => {
     return (
-        <div></div>
+        <About />
     )
 }
