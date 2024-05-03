@@ -1,10 +1,14 @@
 import { Task } from "components/Task"
 import cls from "./TaskList.module.scss"
-import { useContext } from "react"
-import { TasksContext } from "components/TaskProvider/TasksContext"
+import { useContext, useEffect } from "react"
+import { LOCAL_STORAGE_TASKS_KEY, TasksContext } from "components/TaskProvider/TasksContext"
 
 export const TaskList = () => {
     const { tasks } = useContext(TasksContext)
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(tasks));
+    }, [tasks])
     
     return (
         <div className={cls.TaskList}>

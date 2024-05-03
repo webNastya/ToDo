@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_TASKS_KEY, TasksContext } from "components/TaskProvider/TasksContext"
+import { TasksContext } from "components/TaskProvider/TasksContext"
 import cls from "./TaskInput.module.scss"
 import { Button } from "components/UIkit/Button"
 import { Input } from "components/UIkit/Input"
@@ -13,7 +13,6 @@ export const TaskInput = () => {
         const maxId = tasks.length ? Math.max(...tasks.map(task => task.id)) + 1 : 0
         const newTasks = [{id:maxId, text:taskText, isComplete:false}, ...tasks]
         setTasks(newTasks)
-        localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(newTasks))
         setTaskText("")
     }
 

@@ -10,6 +10,7 @@ export const About = () => {
                         <li>useState</li>
                         <li>useContext</li>
                         <li>useMemo</li>
+                        <li>useEffect</li>
                     </ul>
                 <li>TypeSkript</li>
                 <li>webpack</li>
